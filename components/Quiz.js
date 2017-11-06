@@ -27,6 +27,7 @@ class Quiz extends Component {
     }
     render () {
         const { questions } = this.props.navigation.state.params
+        console.log(this.props.navigation.state)
         const { question, questionNumber, done, score } = this.state
         return (
             <View>
@@ -64,11 +65,17 @@ class Quiz extends Component {
                   </TouchableOpacity>
             </View>
             </View> :
-            <View style={{flex: 1, alignItems: 'center'}}>
-                <Text style={{fontSize:30, marginTop: 50}}>Score:</Text>
+            <View style={{ alignItems: 'center', marginTop: 50}}>
+                <Text style={{fontSize:30}}>Score:</Text>
                 <Text style={{fontSize:30, color: 'red'}}>
                   {Math.round((score/questions.length) * 100)}%
                 </Text>
+                <TouchableOpacity style={styles.backButton} onPress={()=>this.props.navigation.goBack()}>
+                    <Text>Back To Deck</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.backButton} onPress={()=>this.props.navigation.navigate('Quiz', {questions})}>
+                    <Text>Restart Quiz</Text>
+                </TouchableOpacity>
             </View>}
       </View>
     )
@@ -103,7 +110,16 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 50,
         marginTop: 100
+    },
+    backButton: {
+        padding: 5,
+        borderRadius: 5,
+        backgroundColor: 'red',
+        // width: '40%',
+        alignSelf: 'center',
+        margin: 10
     }
+
 });
 
 export default Quiz

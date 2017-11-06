@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 import { STORAGE_KEY, NOTIFICATION_KEY } from './helpers'
 
 
-AsyncStorage.setItem(STORAGE_KEY, "{}")
+// AsyncStorage.setItem(STORAGE_KEY, "{}")
 
 export function getDecks () {
     return AsyncStorage.getItem(STORAGE_KEY)
